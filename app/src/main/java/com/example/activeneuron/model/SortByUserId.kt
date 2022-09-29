@@ -1,5 +1,6 @@
 package com.example.activeneuron.model
 
+
 data class SortByUserId(
     val __v: Int,
     val date: String,

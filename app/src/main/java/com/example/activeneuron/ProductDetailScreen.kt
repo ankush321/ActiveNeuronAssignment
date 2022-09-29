@@ -1,8 +1,10 @@
 package com.example.activeneuron
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.activeneuron.databinding.ActivityProductDetailBinding
 import com.example.activeneuron.model.ProductDetail
@@ -13,6 +15,10 @@ class ProductDetailScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val actionBar = supportActionBar!!
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.title = "Product Detail"
+
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         productDetail = intent.extras?.getParcelable("ProductDetail")
@@ -23,5 +29,15 @@ class ProductDetailScreen : AppCompatActivity() {
             binding.price.text = it.price.toString()
             binding.productDescription.text = it.description
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
